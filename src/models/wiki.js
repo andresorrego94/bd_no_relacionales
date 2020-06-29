@@ -2,12 +2,11 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const WikiSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    status: {
-        type: Boolean,
-        default: false
-    }
+    repositoryId: String,
+    wiki: [{
+        type: schema.Types.ObjectId,
+        ref: "Page"
+    }]
 });
 
-module.exports = mongoose.model( 'wikis' , WikiSchema );
+module.exports = mongoose.model( 'Wiki' , WikiSchema );

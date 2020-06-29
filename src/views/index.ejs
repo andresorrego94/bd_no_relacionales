@@ -1,12 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Wikis</title>
-</head>
-<body>
-    <h1>Welcome to wikis</h1>
-    
-</body>
-</html>
+<%-  include  ('partials/_header');  -%>
+
+<pre>
+    <%= wikis %>
+</pre>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+
+                    <form action="/add" method="POST">
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="repositoryId" value="" placeholder="Title">
+                        </div>
+                        <!-- <div class="form-group">
+                            <textarea class="form-control" cols="80" name="description" placeholder="Description">Description
+                            </textarea>
+                        </div> -->
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Add
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- LIST -->
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( var i = 0; i < wikis.length; i++) { %>
+
+                        <tr>
+                            <td><%=  i + 1 %></td>
+                            <td><%= wikis[i].repositoryId %></td>
+                            <td><%= wikis[i].description %></td>
+                            <td>
+                                <a href="/turn/<%=wikis[i]._id%>" class="btn btn-dark">Done</a>
+                                <a href="/delete/<%=wikis[i]._id%>" class="btn btn-danger">Delete</a>
+                                <a href="/edit/<%=wikis[i]._id%>" class="btn btn-info">Edit</a>
+                            </td>
+
+                        </tr>
+
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<%-  include  ('partials/_footer');  -%>
