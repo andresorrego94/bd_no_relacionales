@@ -6,15 +6,15 @@ const PageSchema = new mongoose.Schema({
         type: schema.Types.ObjectId,
         ref: "Wiki"
     },
+    // pageHistory:{
+    //     type: schema.Types.ObjectId,
+    //     ref: "PageHistory"
+    // },
     title: String,
     creatorUsername: String,
     updateDate: Date,
     content: String,
-    optionalMessage: String, 
-    pageHistory: [{
-        type: schema.Types.ObjectId,
-        ref: "Page"
-    }]
+    optionalMessage: String
 });
 
-module.exports = mongoose.model( 'Page' , WikiSchema );
+module.exports = mongoose.model( 'Page' , PageSchema );

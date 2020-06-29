@@ -9,11 +9,11 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-
+                    <h2>Create wiki for repository</h2>
                     <form action="/add" method="POST">
 
                         <div class="form-group">
-                            <input class="form-control" type="text" name="repositoryId" value="" placeholder="Title">
+                            <input class="form-control" type="text" name="repositoryId" value="" placeholder="Repository id">
                         </div>
                         <!-- <div class="form-group">
                             <textarea class="form-control" cols="80" name="description" placeholder="Description">Description
@@ -61,6 +61,41 @@
             </table>
         </div>
 
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Add page to wiki</h2>
+                    <form action="/addpage" method="POST">
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="title" value="" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="creatorUsername" value="" placeholder="Creator username">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="content" value="" placeholder="Content">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="optionalMessage" value="" placeholder="Optional">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <textarea class="form-control" cols="80" name="description" placeholder="Description">Description
+                            </textarea>
+                        </div> -->
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Add page
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
