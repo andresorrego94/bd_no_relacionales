@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <h2>Edit page </h2>
-                    <form action="/addpage" method="POST">
+                    <form action="/pageedit/<%=page._id%>" method="POST">
 
                         <div class="form-group">
                             <label for="">Selected wiki</label>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Content</label>
-                            <textarea class="form-control" name="content" value="<%=page.content%>" placeholder="Content"></textarea>
+                            <textarea class="form-control" name="content" placeholder="Content"><%=page.content%></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">Edition message (Optional)</label>
