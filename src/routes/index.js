@@ -20,8 +20,15 @@ router.post('/add', async (req, res) => {
     console.log(req.body)
 });
 
+router.get('/wikidetail/:id', async (req, res) => {
+    const { id } = req.params;
+    const wiki = await Wiki.findById(id).populate('pages');
+    res.render('wikidetail', {
+        wiki
+    });
+});
 router.post('/addpage', async (req, res) => {
-    await addPageToWiki('5ef97530f829760ce972526c', req.body);
+    await addPageToWiki(req.body);
     res.redirect('/');
     console.log(req.body)
 });
@@ -41,6 +48,16 @@ router.get('/turn/:id', async (req, res) => {
     await wiki.save();
     res.redirect('/');
 });
+
+router.get('/pageedit/:id', async (req, res) => {
+    const { id } = req.params;
+    const page = await Page.findById(id);
+    res.render('pageedit', {
+        page
+    });
+});
+
+
 
 router.get('/edit/:id', async (req, res) => {
     const { id } = req.params;
@@ -63,17 +80,24 @@ async function createWiki(repositoryId) {
     console.log(result);
 }
 
-async function addPageToWiki(wikiId, page) {
+async function addPageToWiki(page) {
+    console.log(page);
     const newPage = new Page(page);
     const resultPage = await newPage.save();
-    console.log('el id de la pagina insertada es ' + resultPage._id);
 
-    //const wiki = await Wiki.findById(wikiId);
     await Wiki.update(
-        { _id: wikiId },
-        { $push: {wiki: resultPage._id } }
+        { _id: page.wikiId },
+        { $push: {pages: resultPage._id } }
     );
 }
+
+
+//update page, updatea la page y en el  historial agrega ese estado, hace copia. 
+//borrage page, borrar historial ? 
+//esta bien si paso una id nomas de repo ? 
+
+
+
 
 
 

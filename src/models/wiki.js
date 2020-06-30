@@ -3,7 +3,7 @@ const schema = mongoose.Schema;
 
 const WikiSchema = new mongoose.Schema({
     repositoryId: String,
-    wiki: [{
+    pages: [{
         type: schema.Types.ObjectId,
         ref: "Page"
     }]

@@ -1,0 +1,81 @@
+<%-  include  ('partials/_header');  -%>
+
+<div class="container">    
+    <div class="row justify-content-md-center">
+        <div class="col-md-12">
+            <h4>Wiki identifier: <%=wiki._id%></h4>
+            <h4>Wiki repository identifier: <%=wiki.repositoryId%></h4>
+            <h4>Wiki pages :</h4>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Wiki Id</th>
+                        <th>Title</th>
+                        <th>Creator</th>
+                        <th>Last update</th>
+                        <th>Content</th>
+                        <th>Optional Edit Message</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( var i = 0; i < wiki.pages.length; i++) { %>
+
+                    <tr>
+                        <td><%=  i + 1 %></td>
+                        <td><%= wiki.pages[i].wikiId %></td>
+                        <td><%= wiki.pages[i].title %></td>
+                        <td><%= wiki.pages[i].creatorUsername %></td>
+                        <td><%= wiki.pages[i].updateDate %></td>
+                        <td><%= wiki.pages[i].content %></td>
+                        <td><%= wiki.pages[i].optionalMessage %></td>    
+                        <td>
+                            <a href="/pageedit/<%=wiki.pages[i]._id%>"class="btn btn-info">Edit</a>
+                            <a href="/" class="btn btn-danger">Go history</a>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-5" >
+            <div class="card">
+                <div class="card-body">
+                    <h2>Add page to wiki</h2>
+                    <form action="/addpage" method="POST">
+
+                        <div class="form-group">
+                            <label for="">Selected wiki identifier</label>
+                            <input disabled class="form-control" type="text" name="wikiId" value="<%= wiki._id %>" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="title" value="" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="creatorUsername" value=""
+                                placeholder="Creator username">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="content" value="" placeholder="Content (in Markdown)">
+                        </div>                        
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Add page
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<pre><%= wiki %></pre>
+
+<%-  include  ('partials/_footer');  -%>

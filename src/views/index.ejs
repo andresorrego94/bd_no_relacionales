@@ -1,11 +1,7 @@
 <%-  include  ('partials/_header');  -%>
 
-<pre>
-    <%= wikis %>
-</pre>
-
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-md-center mb-4" >
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
@@ -13,7 +9,9 @@
                     <form action="/add" method="POST">
 
                         <div class="form-group">
-                            <input class="form-control" type="text" name="repositoryId" value="" placeholder="Repository id">
+                            <label>Entry your repository id, in prod environment this field will be auto-complete.</label>
+                            <input class="form-control" type="text" name="repositoryId" value=""
+                                placeholder="Repository id">
                         </div>
                         <!-- <div class="form-group">
                             <textarea class="form-control" cols="80" name="description" placeholder="Description">Description
@@ -21,39 +19,43 @@
                         </div> -->
 
                         <button type="submit" class="btn btn-primary btn-block">
-                            Add
+                            Create wiki
                         </button>
                     </form>
 
                 </div>
             </div>
         </div>
-
+    </div>
+    <hr>
+    <div class="row justify-content-md-center mb-4">
         <!-- LIST -->
         <div class="col-md-7">
+            <h2>List of wikis</h2>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Title</th>
-                        <th>Description</th>
+                        <th>Repository Id</th>
+                        <th>Amount of pages</th>
                         <th>Operation</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for( var i = 0; i < wikis.length; i++) { %>
 
-                        <tr>
-                            <td><%=  i + 1 %></td>
-                            <td><%= wikis[i].repositoryId %></td>
-                            <td><%= wikis[i].description %></td>
-                            <td>
-                                <a href="/turn/<%=wikis[i]._id%>" class="btn btn-dark">Done</a>
-                                <a href="/delete/<%=wikis[i]._id%>" class="btn btn-danger">Delete</a>
-                                <a href="/edit/<%=wikis[i]._id%>" class="btn btn-info">Edit</a>
-                            </td>
+                    <tr>
+                        <td><%=  i + 1 %></td>
+                        <td><%= wikis[i].repositoryId %></td>
+                        <td><%= wikis[i].pages.length %></td>
+                        <td>
+                            <!-- <a href="/turn/<%=wikis[i]._id%>" class="btn btn-dark">Done</a> -->
+                            <a href="/wikidetail/<%=wikis[i]._id%>" class="btn btn-info">Go wiki</a>
+                            <a href="/delete/<%=wikis[i]._id%>" class="btn btn-danger">Delete</a>
+                            <!-- <a href="/edit/<%=wikis[i]._id%>" class="btn btn-info">Edit</a> -->
+                        </td>
 
-                        </tr>
+                    </tr>
 
                     <% } %>
 
@@ -63,7 +65,7 @@
 
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
@@ -83,10 +85,10 @@
                             <input class="form-control" type="text" name="optionalMessage" value="" placeholder="Optional">
                         </div>
 
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <textarea class="form-control" cols="80" name="description" placeholder="Description">Description
                             </textarea>
-                        </div> -->
+                        </div>
 
                         <button type="submit" class="btn btn-primary btn-block">
                             Add page
@@ -96,7 +98,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
+
+<pre>
+    <%= wikis %>
+</pre>
 
 <%-  include  ('partials/_footer');  -%>

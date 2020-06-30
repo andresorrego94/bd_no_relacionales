@@ -2,14 +2,8 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const PageSchema = new mongoose.Schema({
-    wiki:{
-        type: schema.Types.ObjectId,
-        ref: "Wiki"
-    },
-    // pageHistory:{
-    //     type: schema.Types.ObjectId,
-    //     ref: "PageHistory"
-    // },
+    historyId: String,
+    wikiId: String,
     title: String,
     creatorUsername: String,
     updateDate: Date,
