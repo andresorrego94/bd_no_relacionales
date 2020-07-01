@@ -1,18 +1,20 @@
 <%-  include  ('partials/_header');  -%>
 
 <div class="container">
-    <div class="row justify-content-md-center mb-4" >
+    <div class="row justify-content-md-center mb-4">
+        <!-- CREATE WIKI -->
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <h2>Create wiki for repository</h2>
+                    <h3>Create wiki for repository</h3>
                     <form action="/add" method="POST">
 
                         <div class="form-group">
-                            <label>Entry your repository id, in prod environment this field will be auto-complete.</label>
+                            <label>Entry your repository id, in prod environment this field will be
+                                auto-complete.</label>
                             <input class="form-control" type="text" name="repositoryId" value=""
                                 placeholder="Repository id">
-                        </div>                       
+                        </div>
 
                         <button type="submit" class="btn btn-primary btn-block">
                             Create wiki
@@ -27,7 +29,7 @@
     <div class="row justify-content-md-center mb-4">
         <!-- LIST -->
         <div class="col-md-7">
-            <h2>List of wikis</h2>
+            <h3>List of wikis</h3>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -39,66 +41,40 @@
                 </thead>
                 <tbody>
                     <% for( var i = 0; i < wikis.length; i++) { %>
-
                     <tr>
                         <td><%=  i + 1 %></td>
                         <td><%= wikis[i].repositoryId %></td>
                         <td><%= wikis[i].pages.length %></td>
                         <td>
-                            <!-- <a href="/turn/<%=wikis[i]._id%>" class="btn btn-dark">Done</a> -->
                             <a href="/wikidetail/<%=wikis[i]._id%>" class="btn btn-info">Go wiki</a>
                             <a href="/delete/<%=wikis[i]._id%>" class="btn btn-danger">Delete</a>
-                            <!-- <a href="/edit/<%=wikis[i]._id%>" class="btn btn-info">Edit</a> -->
                         </td>
-
                     </tr>
-
                     <% } %>
-
                 </tbody>
             </table>
         </div>
-
     </div>
+</div>
 
-    <!-- <div class="row">
+<!-- MONGO DB JSON -->
+<div class="container" style="margin-top: 4rem;">
+    <hr>
+    <div class="row justify-content-md-center">
         <div class="col-md-5">
             <div class="card">
+                <div class="card-header">
+                    <label>Data from Mongo DB:</label>
+                </div>
                 <div class="card-body">
-                    <h2>Add page to wiki</h2>
-                    <form action="/addpage" method="POST">
-
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="title" value="" placeholder="Title">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="creatorUsername" value="" placeholder="Creator username">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="content" value="" placeholder="Content">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="optionalMessage" value="" placeholder="Optional">
-                        </div>
-
-                        <div class="form-group">
-                            <textarea class="form-control" cols="80" name="description" placeholder="Description">Description
-                            </textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block">
-                            Add page
-                        </button>
-                    </form>
-
+                    <pre>
+                        <%= wikis %>
+                    </pre>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </div>
 
-<pre>
-    <%= wikis %>
-</pre>
 
 <%-  include  ('partials/_footer');  -%>

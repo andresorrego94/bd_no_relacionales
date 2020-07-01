@@ -3,9 +3,15 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-12">
-            <h4>Wiki ID: <%=wiki._id%></h4>
-            <h4>Wiki repository ID: <%=wiki.repositoryId%></h4>
-            <h4>Wiki pages :</h4>
+            <div>
+                <label style="font-weight: bold;"> Wiki ID:  </label> <%=wiki._id%>
+            </div>
+            <div>
+                <label style="font-weight: bold;"> Wiki repository ID: </label> <%=wiki.repositoryId%>
+            </div>
+            <div>
+                <label style="font-weight: bold;"> Wiki pages :</label>
+            </div>
 
             <% if(wiki.pages.length == 0){ %>
             <label style="color: red;">No pages added.</label>
@@ -37,7 +43,7 @@
                         <td><%= wiki.pages[i].optionalMessage %></td>
                         <td>
                             <a href="/pageedit/<%=wiki.pages[i]._id%>" class="btn btn-info">Edit</a>
-                            <a href="/pagehistory/<%=wiki.pages[i]._id%>" class="btn btn-danger">History</a>
+                            <a href="/pagehistory/<%=wiki.pages[i]._id%>" class="btn btn-primary">History</a>
                         </td>
                     </tr>
                     <% } %>
@@ -53,7 +59,7 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <h2>Add page to wiki</h2>
+                    <h3>Add page to wiki</h3>
                     <form action="/addpage" method="POST">
 
                         <label for="">Selected wiki ID: <%= wiki._id %></label>
@@ -63,15 +69,17 @@
                                 placeholder="Title">
                         </div>
                         <div class="form-group">
+                            <label for="">Title</label>
                             <input class="form-control" type="text" name="title" value="" placeholder="Title">
                         </div>
                         <div class="form-group">
+                            <label for="">Creator</label>
                             <input class="form-control" type="text" name="creatorUsername" value=""
                                 placeholder="Creator username">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" type="text" name="content" value=""
-                                placeholder="Content (in Markdown)">
+                            <label for="">Content</label>
+                            <textarea class="form-control" name="content" placeholder="Markdown text"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block">
@@ -85,6 +93,21 @@
     </div>
 </div>
 
-<pre><%= wiki %></pre>
+<!-- MONGO DB JSON -->
+<div class="container" style="margin-top: 4rem;">
+    <hr>
+    <div class="row justify-content-md-center mb-4">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <label>Data from Mongo DB:</label>
+                </div>
+                <div class="card-body">
+                    <pre><%= wiki %></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <%-  include  ('partials/_footer');  -%>

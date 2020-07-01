@@ -63,10 +63,10 @@ router.get('/pagehistory/:id', async (req, res) => {
   const { id } = req.params;
   const page = await Page.findById(id);
 
-  const history = page.history;
-  console.log(history);
+  //const history = page.history;
+  //console.log(history);
   res.render('pagehistory', {
-    history
+    page
   });
 });
 

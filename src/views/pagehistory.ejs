@@ -1,5 +1,65 @@
 <%-  include  ('partials/_header');  -%>
 
-<pre><%= history %></pre>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-12">
+            <div>
+                <h3>Page history</h3>
+            </div>
+            <div>
+                <label style="font-weight: bold;">Page ID: </label> <%=page._id%>
+            </div>
+            <div>
+                <label style="font-weight: bold;">Edition history : </label>
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Edition Id</th>
+                        <th>Title</th>
+                        <th>Creator</th>
+                        <th>Last update</th>
+                        <th>Content</th>
+                        <th>Optional Edit Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( var i = 0; i < page.history.length; i++) { %>
+                    <tr>
+                        <td><%=  i + 1 %></td>
+                        <td><%= page.history[i]._id %></td>
+                        <td><%= page.history[i].title %></td>
+                        <td><%= page.history[i].creatorUsername %></td>
+                        <td><%= page.history[i].updateDate %></td>
+                        <td><%= page.history[i].content %></td>
+                        <td><%= page.history[i].optionalMessage %></td>
+                    </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- MONGO DB JSON -->
+<div class="container" style="margin-top: 4rem;">
+    <hr>
+    <div class="row justify-content-md-center mb-4">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <label>Data from Mongo DB:</label>
+                </div>
+                <div class="card-body">
+                    <pre><%= page %></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <%-  include  ('partials/_footer');  -%>
